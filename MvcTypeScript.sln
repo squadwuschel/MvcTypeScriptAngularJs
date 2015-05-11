@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcTypeScript", "MvcTypeScript\MvcTypeScript.csproj", "{A5D6EE94-9973-4E76-BF7E-156E0679C3A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyCreator", "Angular\ProxyCreator.csproj", "{5A35CDC5-C174-4136-A219-765FE194E093}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9642C70A-13B6-4F45-B1BA-73EE0ED38EFE}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -14,19 +12,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9642C7
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProxyCreator", "ProxyCreator\ProxyCreator.csproj", "{5A35CDC5-C174-4136-A219-765FE194E093}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs29
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = MvcTypeScript\\MvcTypeScript.csproj
-		SccProjectName1 = MvcTypeScript
-		SccLocalPath1 = MvcTypeScript
-		SccProjectUniqueName2 = Angular\\ProxyCreator.csproj
-		SccProjectName2 = Angular
-		SccLocalPath2 = Angular
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
