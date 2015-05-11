@@ -13,4 +13,8 @@ der Verwendung der folgenden Technologien:
 Automatisches Erstellen von AngularJs Services für ASP.NET MVC Controller
 über ein Attribut in den entsprechenden Controller Funktionen.
 
- 
+     [CreateProxy(ReturnType = typeof(TodoOverviewInitModel))]
+      public JsonResult InitTodoOverviewInitModel()
+      {
+         return Json(TodoOverviewModelBuilder.InitTodoOverviewInitModel(), JsonRequestBehavior.AllowGet);
+      }
