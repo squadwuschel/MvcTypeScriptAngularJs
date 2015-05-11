@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h3 class="modal-title" ng-bind="Locals.title">
+    </h3>
+</div>
+<div class="modal-body">
+    <br />
+    <p class="text-center">
+        <strong ng-if="!Locals.IsMessageArray" ng-bind="Locals.message">
+        </strong>
+        <div ng-if="Locals.IsMessageArray">
+            <ul ng-repeat="item in Locals.message track by $index">
+                <li ng-bind="item">
+                </li>
+            </ul>
+        </div>
+    </p>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-3">
+            <button class="btn btn-default btn-block" ng-click="cancel()">
+                Abbrechen</button>
+        </div>
+        <div class="col-md-offset-6 col-md-3">
+            <button class="btn btn-primary btn-block" sxp-enter="ok()" ng-click="ok()">
+                OK</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿#mainContainer {
+  margin-top: 75px;
+}
+a {
+  color: #ff5800;
+}
+.navbar-brand {
+  padding-top: 13px;
+}
+.navbar-brand .brand-logo-size {
+  height: 30px;
+  width: 30px;
+}
+/*.table-header th div {
+    position: absolute; 
+    top: 0;
+}*/
+.table-container {
+  height: 200px;
+}
+/*# sourceMappingURL=main.css.map */

@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "TodoOverview";
+    Layout = null;
+}
+
+<div ng-controller="todoOverviewCtrl as ctrl">
+    <div class="row">
+        <div class="col-md-11">
+            <h3 style="margin: 0;">TODO Übersicht vom <span ng-bind="ctrl.initModel.Datum"></span> [<span ng-bind="ctrl.initModel.CurrentUser"></span>]</h3>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-default" ng-click="ctrl.toggleNewEntry()">
+                <i class="fa fa-fw" ng-class="{'fa-plus': !ctrl.locals.isAddEntryVisible, 'fa-times': ctrl.locals.isAddEntryVisible}"></i>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr style="margin-top: 10px;" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">TODO Übersicht</h3>
+                </div>
+                <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Offen</th>
+                            <th>Beschreibung</th>
+                            <th>Zu erledigen bis</th>
+                            <th>Ersteller</th>
+                            <th>Priorität</th>
+                            <th>Optionen</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in ctrl.resultModel.Entries">
+                            <td ng-bind="row.Id"></td>
+                            <td><i class="fa fa-fw" ng-class="{'fa-square-o text-danger': row.IsOpen, 'fa-check-square-o text-success':!row.IsOpen}"></i> </td>
+                            <td ng-bind="row.Description"></td>
+                            <td ng-bind="row.DoDate"></td>
+                            <td ng-bind="row.Creator"></td>
+                            <td ng-bind="ctrl.getPrioString(row.Prioritaet)"></td>
+                            <td>
+                                <a href="" class="btn btn-default btn-xs"
+                                   sxp-modal-apply-or-cancel
+                                   sxp-modal-apply-fct="ctrl.deleteEntry(row.Id)"
+                                   sxp-modal-titel="'Einrag löschen!'"
+                                   sxp-modal-text="'Wollen Sie den Eintrag wirklich löschen?'"
+                                   sxp-modal-size="'lg'">
+                                    <i class="fa fa-trash-o"></i>
+                                </a>
+                                <a class="btn btn-default btn-xs" ng-click="ctrl.editTodoEntry(row.Id)"><i class="fa  fa-edit"></i></a>
+                            </td>
+                        </tr>
+                        <tr ng-if="ctrl.locals.isAddEntryVisible">
+                            <td>&nbsp;</td>
+                            <td>
+                                <i class="fa fa-fw" style="margin-top: 8px;" ng-class="{'fa-square-o text-danger':ctrl.locals.newTodoItem.IsOpen, 'fa-check-square-o text-success':!ctrl.locals.newTodoItem.IsOpen}" ng-click="ctrl.locals.newTodoItem.IsOpen = !ctrl.locals.newTodoItem.IsOpen"></i>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" placeholder="Beschreibung eingeben" ng-model="ctrl.locals.newTodoItem.Description">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" placeholder="Datum" ng-model="ctrl.locals.newTodoItem.DoDate" name="DoDate" bs-datepicker>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-sm" placeholder="Ersteller" ng-model="ctrl.locals.newTodoItem.Creator">
+                            </td>
+                            <td>
+                                <select class="form-control input-sm" name="Serverlevel" ng-model="ctrl.locals.newTodoItem.Prioritaet"
+                                        ng-options="item.Value as item.Text for item in ctrl.listenService.listEntries.PriorityList"></select>
+                            </td>
+                            <td>
+                                <a class="btn btn-xs btn-primary" ng-click="ctrl.addOrUpdateEntry(ctrl.locals.newTodoItem)"><i class="fa fa-fw fa-save"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody ng-if="ctrl.resultModel.Entries.length === 0">
+                        <tr>
+                            <td colspan="7" class="text-center">
+                                <strong>Es wurden keine Todo Items gefunden</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
