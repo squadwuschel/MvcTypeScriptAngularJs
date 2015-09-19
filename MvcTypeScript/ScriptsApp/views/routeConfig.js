@@ -18,13 +18,16 @@ var App;
                 this.$urlRouterProvider.otherwise("Todo/Overview");
                 //$locationProvider.html5Mode(true);
                 //Definieren der Routen die in unserer App zur Verfügung stehen.
-                this.$stateProvider.state("Todo", {
+                this.$stateProvider
+                    .state("Todo", {
                     url: "/Todo",
                     templateUrl: "Todo/TodoOverview"
-                }).state("Todo.Overview", {
+                })
+                    .state("Todo.Overview", {
                     url: "/Overview",
                     templateUrl: "Todo/TodoOverview"
-                }).state("Home", {
+                })
+                    .state("Home", {
                     url: "/Home",
                     templateUrl: "Home/Index"
                 });

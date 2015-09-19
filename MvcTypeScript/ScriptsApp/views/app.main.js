@@ -6,20 +6,20 @@ var App;
         MainApp.createApp = function (angular) {
             //Alle Module definieren die wir verwenden.
             angular.module("app.main", [
+                //Fremdanbieter Module
                 "ui.router",
                 "ui.bootstrap",
                 "mgcrea.ngStrap.datepicker",
+                //Eigene Module einbinden
                 "deafaultModal.directives",
+                //Module die mit TypeScript geschrieben wurden einbinden
                 App.Views.MainAppCtrl.module.name,
                 App.Views.Todo.TodoOverviewCtrl.module.name,
                 App.Views.Todo.TodoEditModalCtrl.module.name,
                 App.Views.Shared.TodoModalService.module.name,
                 App.Views.Shared.TodoListenService.module.name
             ]).config([
-                "$stateProvider",
-                "$urlRouterProvider",
-                "$locationProvider",
-                function ($stateProvider, $urlRouterProvider, $locationProvider) {
+                "$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
                     return new App.Config.RouteConfig($stateProvider, $urlRouterProvider, $locationProvider);
                 }
             ]);

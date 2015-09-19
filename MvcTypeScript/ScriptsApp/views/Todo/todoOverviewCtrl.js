@@ -73,13 +73,13 @@ var App;
                 */
                 TodoOverviewCtrl.prototype.getPrioString = function (prio) {
                     switch (prio) {
-                        case 4 /* Normal */:
+                        case MvcTypeScript.Helper.Prioritaet.Normal:
                             return "Normal";
-                        case 8 /* Dringend */:
+                        case MvcTypeScript.Helper.Prioritaet.Dringend:
                             return "Dringend";
-                        case 6 /* Hoch */:
+                        case MvcTypeScript.Helper.Prioritaet.Hoch:
                             return "Hoch";
-                        case 2 /* Keine */:
+                        case MvcTypeScript.Helper.Prioritaet.Keine:
                             return "Keine";
                     }
                     return "";

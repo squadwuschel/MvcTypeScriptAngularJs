@@ -15,9 +15,8 @@ var App;
                 TodoListenService.prototype.init = function () {
                     var _this = this;
                     //Laden der Modeldaten
-                    this.todoService.initTodoListenViewModel().then(function (result) {
-                        _this.listEntries = result;
-                    });
+                    this.todoService.initTodoListenViewModel()
+                        .then(function (result) { _this.listEntries = result; });
                 };
                 Object.defineProperty(TodoListenService, "module", {
                     /**

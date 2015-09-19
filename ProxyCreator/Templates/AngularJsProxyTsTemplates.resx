@@ -134,8 +134,7 @@
   </data>
   <data name="FunctionDefnitionWithReturnType" xml:space="preserve">
     <value>{0}({1}) : ng.IPromise&lt;{2}&gt; {{
-    return this.$http.{3}.then((response: ng.IHttpPromiseCallbackArg&lt;{2}&gt;) : {2} 
-	=&gt; {{ return response.data; }} );
+    return this.$http.{3}.then((response: ng.IHttpPromiseCallbackArg&lt;{2}&gt;) : {2} =&gt; {{ return response.data; }} );
 }}</value>
     <comment>{0} --&gt; Der Name der Service Funktion
 {1} --&gt; Die Parameter der Service Funktion

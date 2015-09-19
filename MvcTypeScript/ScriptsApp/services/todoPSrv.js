@@ -1,7 +1,7 @@
 //Achtung diese Datei wurde automatisch erstellt,
 //bitte nehmen Sie keine Änderungen daran vor, diese werden
 //beim nächsten Erstellen wieder überschrieben.
-//Erstellt am 15.05.2015 um 19:49:52 von SquadWuschel.
+//Erstellt am 19.09.2015 um 09:31:46 von SquadWuschel.
 var App;
 (function (App) {
     var Services;
@@ -11,42 +11,28 @@ var App;
                 this.$http = $http;
             }
             TodoPService.prototype.initTodoOverviewInitModel = function () {
-                return this.$http.get('Todo/InitTodoOverviewInitModel').then(function (response) {
-                    return response.data;
-                });
+                return this.$http.get('Todo/InitTodoOverviewInitModel').then(function (response) { return response.data; });
             };
             TodoPService.prototype.initTodoOverviewSearchModel = function () {
-                return this.$http.get('Todo/InitTodoOverviewSearchModel').then(function (response) {
-                    return response.data;
-                });
+                return this.$http.get('Todo/InitTodoOverviewSearchModel').then(function (response) { return response.data; });
             };
             TodoPService.prototype.todoOverviewResultModel = function (searchModel) {
-                return this.$http.post('Todo/TodoOverviewResultModel', searchModel).then(function (response) {
-                    return response.data;
-                });
+                return this.$http.post('Todo/TodoOverviewResultModel', searchModel).then(function (response) { return response.data; });
             };
             TodoPService.prototype.initTodoCreateViewModel = function () {
-                return this.$http.get('Todo/InitTodoCreateViewModel').then(function (response) {
-                    return response.data;
-                });
+                return this.$http.get('Todo/InitTodoCreateViewModel').then(function (response) { return response.data; });
             };
             TodoPService.prototype.addOrUpdateTodoItem = function (createItem) {
-                return this.$http.post('Todo/AddOrUpdateTodoItem', createItem).then(function (response) {
-                    return response.data;
-                });
+                return this.$http.post('Todo/AddOrUpdateTodoItem', createItem).then(function (response) { return response.data; });
             };
             TodoPService.prototype.deleteTodoEntry = function (todoItemId) {
                 this.$http.get('Todo/DeleteTodoEntry' + '?todoItemId=' + todoItemId);
             };
             TodoPService.prototype.loadTodoItem = function (todoItemId) {
-                return this.$http.get('Todo/LoadTodoItem' + '?todoItemId=' + todoItemId).then(function (response) {
-                    return response.data;
-                });
+                return this.$http.get('Todo/LoadTodoItem' + '?todoItemId=' + todoItemId).then(function (response) { return response.data; });
             };
             TodoPService.prototype.initTodoListenViewModel = function () {
-                return this.$http.get('Todo/InitTodoListenViewModel').then(function (response) {
-                    return response.data;
-                });
+                return this.$http.get('Todo/InitTodoListenViewModel').then(function (response) { return response.data; });
             };
             Object.defineProperty(TodoPService, "module", {
                 get: function () {

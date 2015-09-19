@@ -18,12 +18,31 @@ namespace MvcTypeScript.Controllers
         [Inject]
         public ITodoListenModelBuilder TodoListenModelBuilder { protected get; set; }
 
-        #region Views
-        public ActionResult TodoOverview()
+        //#region Views
+        //public ActionResult TodoOverview()
+        //{
+        //    return View();
+        //}
+        //#endregion
+
+        //#region Modals
+        //public ActionResult TodoEditModal()
+        //{
+        //    return View();
+        //}
+        //#endregion
+
+        protected override void HandleUnknownAction(string actionName)
         {
-            return View();
+            try
+            {
+                this.View(actionName).ExecuteResult(this.ControllerContext);
+            }
+            catch (System.Exception)
+            {
+                this.View("404").ExecuteResult(this.ControllerContext);
+            }
         }
-        #endregion
 
         #region Ajax Calls
         [CreateProxy(ReturnType = typeof(TodoOverviewInitModel))]
@@ -75,11 +94,6 @@ namespace MvcTypeScript.Controllers
         }
         #endregion
 
-        #region Modals
-        public ActionResult TodoEditModal()
-        {
-            return View();
-        }
-        #endregion
+
     }
 }

@@ -29,7 +29,8 @@ var App;
                         }
                     };
                     //Das Promise zurückgeben, damit man auf den Rückgabewert des Modals in der Anwendung entsprechend reagieren kann.
-                    return this.$modal.open(options).result.then(function (updatedItem) {
+                    return this.$modal.open(options).result
+                        .then(function (updatedItem) {
                         return updatedItem;
                     });
                 };
