@@ -14,28 +14,25 @@
                 Views.Todo.TodoOverviewCtrl.module.name,
                 Views.Todo.TodoEditModalCtrl.module.name,
                 Views.Shared.TodoModalService.module.name,
-                Views.Shared.TodoListenService.module.name
+                Views.Shared.TodoListenService.module.name,
+                Views.Todo.Es6FeaturesCtrl.module.name
             ]).config([
                 "$stateProvider", "$urlRouterProvider","$locationProvider", ($stateProvider : ng.ui.IStateProvider, $urlRouterProvider : ng.ui.IUrlRouterProvider, $locationProvider: ng.ILocationProvider) => {
                     return new Config.RouteConfig($stateProvider, $urlRouterProvider, $locationProvider);
                 }
             ]);
         }
-
-        //Alternative Methode zum initialisieren
-        //private static _module: ng.IModule;
-        //public static createModule(ng: ng.IAngularStatic): ng.IModule {
-        //    if (this._module) {
-        //        return this._module;
-        //    }
-        //    this._module = ng.module('mainApp', [MainAppCtrl.module.name]);
-        //    return this._module;  
-        //}
     }
 }
 
 //Unsere Anwendung intial aufrufen/starten
 App.MainApp.createApp(angular);
+
+
+/*Window Interface erweitern, damit wir auch hier auf z.b. eigene Properties zugreifen können die wir z.B: in alten JS dateien definiert haben */
+interface Window {
+    siteRoot: string;
+}
 
 //Stackoverflow Post zur Frage wie man eine App am besten initialisiert
 //http://stackoverflow.com/questions/29545246/how-to-initialize-angularjs-app-with-typescript

@@ -18,20 +18,6 @@ namespace MvcTypeScript.Controllers
         [Inject]
         public ITodoListenModelBuilder TodoListenModelBuilder { protected get; set; }
 
-        //#region Views
-        //public ActionResult TodoOverview()
-        //{
-        //    return View();
-        //}
-        //#endregion
-
-        //#region Modals
-        //public ActionResult TodoEditModal()
-        //{
-        //    return View();
-        //}
-        //#endregion
-
         protected override void HandleUnknownAction(string actionName)
         {
             try

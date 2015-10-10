@@ -26,6 +26,7 @@ namespace MvcTypeScript
                 .IncludeDirectory("~/ScriptsApp/directives", "*.js", true)
                 //.IncludeDirectory("~/ScriptsApp/views/Shared", "*.js", true)
                 .Include(
+                        "~/Scripts/Enums.js",
                         "~/ScriptsApp/Views/routeConfig.js",
                         "~/ScriptsApp/Views/mainCtrl.js",
                         "~/ScriptsApp/Services/todoPSrv.js",
@@ -33,6 +34,7 @@ namespace MvcTypeScript
                         "~/ScriptsApp/Views/Shared/todoModalService.js",
                         "~/ScriptsApp/Views/Todo/todooverviewctrl.js",
                         "~/ScriptsApp/Views/Todo/todoEditModalCtrl.js",
+                        "~/ScriptsApp/Views/Todo/es6FeaturesCtrl.js",
                         "~/ScriptsApp/Views/app.main.js"
                         ));
 

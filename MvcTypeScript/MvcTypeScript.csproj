@@ -301,6 +301,7 @@
     <Content Include="Views\Home\BaseUiView.cshtml" />
     <Content Include="Views\Todo\TodoEditModal.cshtml" />
     <Content Include="Views\Shared\404.cshtml" />
+    <Content Include="Views\Todo\Es6Features.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,6 +317,7 @@
     <TypeScriptCompile Include="ScriptsApp\views\Shared\todoListenService.ts" />
     <TypeScriptCompile Include="ScriptsApp\views\Shared\todoModalService.ts" />
     <TypeScriptCompile Include="ScriptsApp\views\Todo\todoEditModalCtrl.ts" />
+    <TypeScriptCompile Include="ScriptsApp\views\Todo\es6FeaturesCtrl.ts" />
     <TypeScriptCompile Include="Scripts\Enums.ts">
       <DependentUpon>TypeLite.Net4.tt</DependentUpon>
     </TypeScriptCompile>

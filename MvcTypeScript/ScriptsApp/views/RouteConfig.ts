@@ -10,23 +10,23 @@
 
         private Init(): void {
             //$urlRouterProvider.when('/Home', '/home/index');
-            this.$urlRouterProvider.otherwise("Todo/Overview");
+            //this.$urlRouterProvider.otherwise("Todo/Overview");
             //$locationProvider.html5Mode(true);
 
             //Definieren der Routen die in unserer App zur Verfügung stehen.
             this.$stateProvider
                 .state("Todo", {
-                url: "/Todo",
-                templateUrl: "Todo/TodoOverview"
-            })
-                .state("Todo.Overview", {
-                url: "/Overview",
-                templateUrl: "Todo/TodoOverview"
-            })
+                    url: "/Todo",
+                    templateUrl: "Todo/TodoOverview"
+                })
+                .state("Es6Features", {
+                    url: "/Es6Features",
+                    templateUrl: "Todo/Es6Features"
+                })
                 .state("Home", {
-                url: "/Home",
-                templateUrl: "Home/Index"
-            });
+                    url: "/Home",
+                    templateUrl: "Home/Index"
+                });
         }
     }
 }
