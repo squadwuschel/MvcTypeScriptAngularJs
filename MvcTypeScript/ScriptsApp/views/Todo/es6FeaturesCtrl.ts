@@ -40,6 +40,13 @@
         }
 
         multilineStrings(): string {
+
+            var oldStringadd = "In EcmaScript 6 werden endlich Multiline Strings" +
+                    "unterstüzt ohne das man immer ein läastiges" +
+                    "Plus Zeichen verwenden muss. Da" +
+                    "TypeScript auch ES6 Nutzt kann man hier" +
+                    "auf die gleichen Features zugreifen.";
+
             //Mehrzeiliger String ohne "+" Verkettung mit "back-tick" bzw. grave accent Zeichen.
             return `In EcmaScript 6 werden endlich Multiline Strings
                     unterstüzt ohne das man immer ein läastiges
@@ -54,28 +61,33 @@
             items.push("Fahrrad");
             items.push("Moped");
 
+            var oldStringFormat = "Wir haben " + items.length + " Fahrzeugtypen bei uns Zuhause dazu gehört auch ein " +  items[0] + ".";
+
             //String Format mit ES6
-            return `Wir haben ${items.length} Fahrzeugtypen bei uns Zuhause dazu gehört auch ein ${items[0]}`;
+            return `Wir haben ${items.length} Fahrzeugtypen bei uns Zuhause dazu gehört auch ein ${items[0]}.`;
         }
 
         einigeArrayFunktionen() : void {
 
-            //False - Prüft ob alle Einträge dem Größer 12 Sind und nur dann wird True zurückgegeben
+            //EVERY
+            //Ergebnis: False - Prüft ob alle Einträge dem Größer 12 Sind und nur dann wird True zurückgegeben
             var alleAelter12 = this.personList.every((element, index, array) => {
                 return element.age > 12;
             });
 
-            //True - Denn alle Namen enthalten ein "S"
+            //Ergebnis: True - Denn alle Namen enthalten ein "S"
             var entaeltBuchstabeS = this.personList.every((element, index, array) => {
                 //Wenn der Buchstabe "S" im String gefunden wird, wird ein Index größer -1 zurückgegeben!
                 return element.name.toLowerCase().indexOf("s") > -1;
             });
 
-            //True - Prüft ob mindestens ein Eintrag dem Kriterium entspricht und gibt dann True zurück
+            //SOME
+            //Ergebnis: True - Prüft ob mindestens ein Eintrag dem Kriterium entspricht und gibt dann True zurück
             var mindestensEinerJuengerAls12 = this.personList.some((element, index, array) => {
                 return element.age < 12;
             });
             
+            //FILTER
             //Gibt eine Neue Liste mit den gefilterten Einträgen zurück
             var alleAelter18: Person[] = this.personList.filter((element, index, array) => {
                 if (element.age > 18) {
@@ -83,6 +95,7 @@
                 }
             });
 
+            //FOREACH
             var meinePersonen: Person[] = [];
             //For Each Schleife - hat keinen Rückgabewert
             this.personList.forEach((element, index, array) => {
@@ -91,6 +104,7 @@
                 }
             });
 
+            //SORT
             //Sortieren der Array Einträge nach dem Alter mit Sort.
             this.personList.sort((person1, person2) => {
                return person1.age - person2.age;
