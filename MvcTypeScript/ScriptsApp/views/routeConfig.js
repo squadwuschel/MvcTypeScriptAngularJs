@@ -37,3 +37,4 @@ var App;
         Config.RouteConfig = RouteConfig;
     })(Config = App.Config || (App.Config = {}));
 })(App || (App = {}));
+//# sourceMappingURL=routeConfig.js.map

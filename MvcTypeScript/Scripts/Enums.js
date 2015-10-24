@@ -11,3 +11,4 @@ var MvcTypeScript;
         var Prioritaet = Helper.Prioritaet;
     })(Helper = MvcTypeScript.Helper || (MvcTypeScript.Helper = {}));
 })(MvcTypeScript || (MvcTypeScript = {}));
+//# sourceMappingURL=Enums.js.map

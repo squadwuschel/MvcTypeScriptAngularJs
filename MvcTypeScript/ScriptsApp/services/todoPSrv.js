@@ -1,7 +1,7 @@
 //Achtung diese Datei wurde automatisch erstellt,
 //bitte nehmen Sie keine Änderungen daran vor, diese werden
 //beim nächsten Erstellen wieder überschrieben.
-//Erstellt am 24.10.2015 um 18:57:55 von SquadWuschel.
+//Erstellt am 24.10.2015 um 20:04:51 von SquadWuschel.
 var App;
 (function (App) {
     var Services;
@@ -52,3 +52,4 @@ var App;
         Services.TodoPService = TodoPService;
     })(Services = App.Services || (App.Services = {}));
 })(App || (App = {}));
+//# sourceMappingURL=todoPSrv.js.map
