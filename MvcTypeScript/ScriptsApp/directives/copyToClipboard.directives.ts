@@ -1,15 +1,15 @@
 ﻿module App.Directives {
 
-    interface ICopyToClipboardScope extends ng.IScope {
-        sqValues: ng.INgModelController;
-        copyToClipbaord(): void;
+
+    export interface ICopyToClipboardScope {
+        sqValues;
     }
 
     /*
-     * Beschreibung 
-     * 
-     * Optionale Attribute: 
-     * 
+     * Directive, die den String im ngModel in die Zwischenablage kopiert. 
+     * https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand
+     * ACHTUNG geht nur ab Chrome:42+, FF:41+, IE:9+, Opera:29+, Safari:Not Supported
+     *
      * Verwendung: 
      *  <div sq-copy-to-clipboard ng-model="viewModel.Name"></div>
      */
@@ -18,26 +18,31 @@
         public replcae: boolean = true;
         public require = "ngModel";
         public templateUrl: string = 'ScriptsApp/directives/templates/copyToClipboard.directives.html';
+        
+        public scope = { }
 
-        public scope = {
-            sqValues: "=ngModel"
+        public controllerAs = "sqCopyPasteCtrl";
+        public bindToController : ICopyToClipboardScope = {
+            sqValues: "=ngModel"    //Der Wert der in die Zwischenablage kopiert werden soll.
         }
 
-        public controller = ($scope: ICopyToClipboardScope) => {
+        //Achtung wir dürfen hier keine Lambda Funktion verwenden, denn sonst können wir nicht auf die bindToController Values zugreifen.
+        public controller = function() {
             var inputId: string = "sqCopyToClipboardText";
-            var input = $(`<input id="${inputId}" value="${$scope.sqValues}" style= "width: 1px; height: 1px; margin: 0; border: 0; padding: 0;" />`);
+            var input = $(`<input id="${inputId}" value="${this.sqValues}" style= "width: 1px; height: 1px; margin: 0; border: 0; padding: 0;" />`);
 
-            $scope.copyToClipbaord = () => {
-                try {
-                    $(input).appendTo(document.body);
-                    $(`#${inputId}`, document.body).select();
-                    document.execCommand("copy");
-                } finally {
-                    $(`#${inputId}`, document.body).remove();
-                }
+            //Scope Funktion muss ebenfalls hier definiert werden, sonst 
+            this.copyToClipboard = () => {
+            try {
+                $(input).appendTo(document.body);
+                $(`#${inputId}`, document.body).select();
+                document.execCommand("copy");
+            } finally {
+                $(`#${inputId}`, document.body).remove();
+            }
             }
         }
-
+        
         //#region Angular Module Definition
         private static _module: ng.IModule;
 
