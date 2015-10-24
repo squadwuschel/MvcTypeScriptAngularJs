@@ -1,1 +1,1 @@
-<a ng-click="sqCopyPasteCtrl.copyToClipboard()" class="btn btn-default" title="In der Zwischenablage ablegen"><i class="fa fa-fw fa-copy"></i></a>
+<a ng-click="sqCopyPasteCtrl.copyToClipboard()" ng-class="sqCopyPasteCtrl.copyToClipBoardConfig.config.btnCssClass" title="{{sqCopyPasteCtrl.copyToClipBoardConfig.config.title}}"><i ng-class="sqCopyPasteCtrl.copyToClipBoardConfig.config.iconCssClass"></i></a>
