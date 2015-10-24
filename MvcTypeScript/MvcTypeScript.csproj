@@ -25,7 +25,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TypeScriptToolsVersion>1.5</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>1.6</TypeScriptToolsVersion>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
@@ -246,6 +246,7 @@
     <Content Include="ScriptsApp\directives\defaultModal.directives.js" />
     <Content Include="ScriptsApp\directives\input.directives.js" />
     <Content Include="ScriptsApp\directives\table.fixedHeader.directives.js" />
+    <Content Include="ScriptsApp\directives\templates\copyToClipboard.directives.html" />
     <Content Include="ScriptsApp\directives\templates\table.fixedHeader.directives.sxpFixedHeader.html" />
     <Content Include="ScriptsApp\directives\templates\defaultModal.directives.ApplyOrCancel.html" />
     <Content Include="ScriptsApp\directives\helperFunctionFactory.js" />
@@ -312,6 +313,7 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="ScriptsApp\directives\copyToClipboard.directives.ts" />
     <TypeScriptCompile Include="ScriptsApp\services\todoPSrv.ts" />
     <TypeScriptCompile Include="ScriptsApp\views\routeConfig.ts" />
     <TypeScriptCompile Include="ScriptsApp\views\Shared\todoListenService.ts" />

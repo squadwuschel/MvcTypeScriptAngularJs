@@ -13,9 +13,15 @@
         constructor(public name: string, public age: number) {  }
     }
 
+    class ViewModel {
+        constructor(public text: string) {  }
+    }
+
+
 
     //Unsere es6Features Klasse erstellen
     export class Es6FeaturesCtrl implements IEs6FeaturesCtrl {
+        private viewModel : ViewModel;
         private personList: Person[];
         static $inject = [
         ];
@@ -23,11 +29,16 @@
         constructor() {
             this.init();
         }
-
+        
         /**
         * Initialisieren der wichtigsten lokalen Variablen
         */
         init(): void {
+            this.viewModel = new ViewModel("Hallo ich bin ein Text");
+
+
+
+
             this.personList = [];
             this.personList.push(new Person("Maiks", 12));
             this.personList.push(new Person("Hannes", 17));
@@ -37,6 +48,11 @@
             this.personList.push(new Person("Henries", 11));
 
             this.einigeArrayFunktionen();
+        }
+
+        copyToClipbaord(): void {
+            $("#clp").select();
+            document.execCommand("copy");
         }
 
         multilineStrings(): string {

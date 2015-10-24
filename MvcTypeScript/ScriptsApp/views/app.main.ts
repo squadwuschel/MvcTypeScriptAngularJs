@@ -15,7 +15,8 @@
                 Views.Todo.TodoEditModalCtrl.module.name,
                 Views.Shared.TodoModalService.module.name,
                 Views.Shared.TodoListenService.module.name,
-                Views.Todo.Es6FeaturesCtrl.module.name
+                Views.Todo.Es6FeaturesCtrl.module.name,
+                Directives.CopyToClipboard.module.name,
             ]).config([
                 "$stateProvider", "$urlRouterProvider","$locationProvider", ($stateProvider : ng.ui.IStateProvider, $urlRouterProvider : ng.ui.IUrlRouterProvider, $locationProvider: ng.ILocationProvider) => {
                     return new Config.RouteConfig($stateProvider, $urlRouterProvider, $locationProvider);

@@ -18,7 +18,8 @@ var App;
                 App.Views.Todo.TodoEditModalCtrl.module.name,
                 App.Views.Shared.TodoModalService.module.name,
                 App.Views.Shared.TodoListenService.module.name,
-                App.Views.Todo.Es6FeaturesCtrl.module.name
+                App.Views.Todo.Es6FeaturesCtrl.module.name,
+                App.Directives.CopyToClipboard.module.name,
             ]).config([
                 "$stateProvider", "$urlRouterProvider", "$locationProvider", function ($stateProvider, $urlRouterProvider, $locationProvider) {
                     return new App.Config.RouteConfig($stateProvider, $urlRouterProvider, $locationProvider);
