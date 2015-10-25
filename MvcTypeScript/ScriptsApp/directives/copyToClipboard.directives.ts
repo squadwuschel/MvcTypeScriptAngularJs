@@ -5,6 +5,7 @@
      */
     export interface ICopyToClipboardScope {
         sqValues;
+        sqTitle;
     }
 
     /*
@@ -13,7 +14,7 @@
      * ACHTUNG geht nur ab Chrome:42+, FF:41+, IE:9+, Opera:29+, Safari:Not Supported
      *
      * Verwendung: 
-     *  <div sq-copy-to-clipboard ng-model="viewModel.Name"></div>
+     *  <div sq-copy-to-clipboard ng-model="viewModel.Name" sq-title="'In die Zwischenablage'"></div>
      */
     export class CopyToClipboard implements ng.IDirective {
         public restrict: string = "A";
@@ -25,7 +26,8 @@
         public controller = CopyToClipboardCtrl;
         public controllerAs = "sqCopyPasteCtrl";
         public bindToController: ICopyToClipboardScope = {
-            sqValues: "=ngModel"    //Der Wert der in die Zwischenablage kopiert werden soll.
+            sqValues: "=ngModel",    //Der Wert der in die Zwischenablage kopiert werden soll.
+            sqTitle: "="             //Der Titel der angezeigt werden soll Optional
         }
 
         constructor() {  }
@@ -41,9 +43,8 @@
             }
 
             //Hier die abhängigen Module für unsere Direktive definieren.
-            this._module = angular.module('copyToClipboard.directives', []);
+            this._module = angular.module('copyToClipboard.directives', [CopyToClipBoardServiceProvider.module.name]);
             this._module.directive('sqCopyToClipboard', [() => { return new CopyToClipboard(); }]);
-            this.module.provider("copyToClipBoardConfig", () => new CopyToClipBoardServiceProvider());
             return this._module;
         }
         //#endregion
@@ -54,20 +55,30 @@
     */
     export class CopyToClipboardCtrl implements ICopyToClipboardScope {
         public sqValues: any;
+        public sqTitle: string;
 
         static $inject = ['copyToClipBoardConfig'];
 
         /* 
         * Da wir die CSS Klassen für einen Provider setzen, hier den passenden Provider injecten und im Template dann auf dessen Config Werte zugreifen.
         */
-        constructor(private copyToClipBoardConfig: ICopyToClipBoardServiceProvider) { }
+        constructor(private copyToClipBoardConfig: ICopyToClipBoardServiceProvider) {
+            this.init();
+        }
+
+        init(): void {
+            //Prüfen ob ein Titel übergeben wurde, sonst den aus dem Provider verwenden
+            if (this.sqTitle === undefined) {
+                this.sqTitle = this.copyToClipBoardConfig.config.title;
+            }
+        }
 
         /*
         * Unseren ModelValue in die Zwischenablage kopieren.
         */
         public copyToClipboard(): void {
             var inputId: string = "sqCopyToClipboardText";
-
+            
             //Unser Input erstellen inkl. des Textes den wir kopieren wollen, da die Angular Implementierung auf "this.sqValues" zugreift ist dies 
             //durch die Extra Definition des CopyToClipboard Controllers problemlos möglich. Das Input selbst ist Mindestens 1px breit und hoch, denn
             //sonst kann der Inhalt im Chrome nicht markiert werden, was zwingend notwendig ist damit der Inhalt kopiert werden kann.
@@ -102,6 +113,25 @@
                 config: this.config
             }
         };
+
+
+        //#region Angular Module Definition
+        private static _module: ng.IModule;
+        /**
+        * Stellt die Angular Module für CopyToClipboardProvider bereit.
+        */
+        public static get module(): ng.IModule {
+            if (this._module) {
+                return this._module;
+            }
+
+            //Hier die abhängigen Module für unsere Direktive definieren.
+            this._module = angular.module('copyToClipBoardConfig.provider', []);
+            this.module.provider("copyToClipBoardConfig", () => new CopyToClipBoardServiceProvider());
+            return this._module;
+        }
+        //#endregion
+
     }
 
     export interface ICopyToClipBoardServiceProvider {

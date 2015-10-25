@@ -14,7 +14,7 @@
     }
 
     class ViewModel {
-        constructor(public text: string) {  }
+        constructor(public text: string, public text2 : string) {  }
     }
 
 
@@ -34,8 +34,7 @@
         * Initialisieren der wichtigsten lokalen Variablen
         */
         init(): void {
-            this.viewModel = new ViewModel("Hallo ich bin ein Text");
-
+            this.viewModel = new ViewModel("Hallo ich bin ein Text", "Das ist ein zweiter Text");
 
 
 
