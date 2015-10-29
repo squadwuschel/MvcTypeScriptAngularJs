@@ -1,11 +1,13 @@
-﻿module App.Directives {
-
+module App.Directives {
     /* 
     * Definition der Scope Variablen
      */
     export interface ICopyToClipboardScope {
-        sqValues;
-        sqTitle;
+        sqValues : string;
+        sqTitle : string;
+        sqIconCss : string;
+        sqBtnCss: string;
+        sqCallBackFct;
     }
 
     /*
@@ -14,23 +16,26 @@
      * ACHTUNG geht nur ab Chrome:42+, FF:41+, IE:9+, Opera:29+, Safari:Not Supported
      *
      * Verwendung: 
-     *  <div sq-copy-to-clipboard ng-model="viewModel.Name" sq-title="'In die Zwischenablage'"></div>
+     *  <div sq-copy-to-clipboard ng-model="ctrl.viewModel.Name" sq-call-back-fct="ctrl.DoSomething" sq-icon-css="'fa fa-fw fa-copy'" sq-btn-css="'btn btn-default btn-xs'" sq-title="'In die Zwischenablage'"></div>
      */
     export class CopyToClipboard implements ng.IDirective {
         public restrict: string = "A";
-        public replcae: boolean = true;
+        public replace: boolean = true;
         public require = "ngModel";
-        public templateUrl: string = 'ScriptsApp/directives/templates/copyToClipboard.directives.html';
+        public templateUrl: string = window.siteRoot + 'ScriptsApp/directives/templates/copyToClipboard.directives.html';
         public scope = {}
-        
+
         public controller = CopyToClipboardCtrl;
         public controllerAs = "sqCopyPasteCtrl";
         public bindToController: ICopyToClipboardScope = {
             sqValues: "=ngModel",    //Der Wert der in die Zwischenablage kopiert werden soll.
-            sqTitle: "="             //Der Titel der angezeigt werden soll Optional
+            sqTitle: "=",            //Der Titel der angezeigt werden soll Optional
+            sqIconCss: "=",          //CSS für das Icon
+            sqBtnCss: "=",           //CSS für den Button
+            sqCallBackFct: "&"        //Callback Funktion die ausgeführt wird, wenn diese gesetzt wurde.
         }
 
-        constructor() {  }
+        constructor() { }
 
         //#region Angular Module Definition
         private static _module: ng.IModule;
@@ -56,6 +61,9 @@
     export class CopyToClipboardCtrl implements ICopyToClipboardScope {
         public sqValues: any;
         public sqTitle: string;
+        public sqIconCss: string;
+        public sqBtnCss: string;
+        public sqCallBackFct;
 
         static $inject = ['copyToClipBoardConfig'];
 
@@ -67,9 +75,17 @@
         }
 
         init(): void {
-            //Prüfen ob ein Titel übergeben wurde, sonst den aus dem Provider verwenden
+            //Prüfen ob ein Titel oder andere CSS Klasse übergeben wurde, sonst den Wert aus dem Provider verwenden
             if (this.sqTitle === undefined) {
                 this.sqTitle = this.copyToClipBoardConfig.config.title;
+            }
+
+            if (this.sqBtnCss === undefined) {
+                this.sqBtnCss = this.copyToClipBoardConfig.config.btnCssClass;
+            }
+
+            if (this.sqIconCss === undefined) {
+                this.sqIconCss = this.copyToClipBoardConfig.config.iconCssClass;
             }
         }
 
@@ -83,7 +99,7 @@
             //durch die Extra Definition des CopyToClipboard Controllers problemlos möglich. Das Input selbst ist Mindestens 1px breit und hoch, denn
             //sonst kann der Inhalt im Chrome nicht markiert werden, was zwingend notwendig ist damit der Inhalt kopiert werden kann.
             var input = $(`<input id="${inputId}" value="${this.sqValues}" style= "width: 1px; height: 1px; margin: 0; border: 0; padding: 0;" />`);
-            
+
             try {
                 //Unser Input dem DOM Hinzufügen
                 $(input).appendTo(document.body);
@@ -93,6 +109,11 @@
             } finally {
                 //Am Ende das Eingabefeld wieder aus dem DOM entfernen
                 $(`#${inputId}`, document.body).remove();
+
+                //Sollte eine CallBack Funktion angegeben sein, diese hier ausführen.
+                if (this.sqCallBackFct !== undefined) {
+                    this.sqCallBackFct();
+                }
             }
         }
     }
