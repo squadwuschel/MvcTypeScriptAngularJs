@@ -22,7 +22,7 @@ module App.Directives {
         public restrict: string = "A";
         public replace: boolean = true;
         public require = "ngModel";
-        public templateUrl: string = window.siteRoot + 'ScriptsApp/directives/templates/copyToClipboard.directives.html';
+        public templateUrl: string = 'ScriptsApp/directives/templates/copyToClipboard.directives.html';
         public scope = {}
 
         public controller = CopyToClipboardCtrl;
